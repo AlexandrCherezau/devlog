@@ -1,0 +1,6 @@
+interface:
+  display_name: "Eldheim devlog"
+  short_description: "Запись проверенных изменений Eldheim в GitHub"
+  default_prompt: "Use $eldheim-devlog to record the completed Eldheim changes with their actual verification and deployment status."
+policy:
+  allow_implicit_invocation: true

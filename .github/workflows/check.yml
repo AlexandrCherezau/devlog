@@ -1,0 +1,24 @@
+name: Check devlog automation
+
+on:
+  push:
+    branches: [main]
+    paths: ['scripts/**', 'tests/**', 'skills/**', '.github/workflows/**']
+  pull_request:
+    paths: ['scripts/**', 'tests/**', 'skills/**', '.github/workflows/**']
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - name: Test queue, installer and real Git publication
+        run: python3 -m unittest discover -s tests -v
+      - name: Compile Python modules
+        run: python3 -m compileall -q scripts tests
